@@ -1,0 +1,1 @@
+{"title":"Caps to Control/Escape","rules":[{"description":"Caps to Control/Escape","manipulators":[{"from":{"key_code":"caps_lock","modifiers":{"optional":["caps_lock"]}},"to":[{"key_code":"left_control","modifiers":[]}],"to_if_alone":[{"key_code":"escape"}],"type":"basic"}]}]}
