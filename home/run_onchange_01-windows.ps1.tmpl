@@ -15,7 +15,7 @@ $apps = @(
 
 foreach ($app in $apps) {
     Write-Host "  Installing $app..."
-    winget install --id $app --accept-package-agreements --accept-source-agreements --silent 2>$null
+    winget install --id $app --source winget --accept-package-agreements --accept-source-agreements --silent 2>$null
     if ($LASTEXITCODE -eq 0) {
         Write-Host "    OK" -ForegroundColor Green
     } else {
