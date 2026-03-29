@@ -3,9 +3,14 @@
 {{- $distro := "" -}}
 {{- $isWsl := false -}}
 {{- $hasDesktop := false -}}
+{{- $useZsh := true -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $hasDesktop = true -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $useZsh = false -}}
 {{- end -}}
 
 {{- if eq .chezmoi.os "linux" -}}
@@ -15,12 +20,12 @@
 {{-   else -}}
 {{-     $hasDesktop = promptBoolOnce . "has_desktop" "Does this machine have a desktop environment" -}}
 {{-   end -}}
+{{-   $useZsh = promptBoolOnce . "use_zsh" "Install and use zsh as default shell" -}}
 {{- end -}}
-
-{{- /* Windows: no questions needed, just install apps */ -}}
 
 [data]
     os_family = {{ $osFamily | quote }}
     distro = {{ $distro | quote }}
     is_wsl = {{ $isWsl }}
     has_desktop = {{ $hasDesktop }}
+    use_zsh = {{ $useZsh }}

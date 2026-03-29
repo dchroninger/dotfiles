@@ -1,7 +1,7 @@
 {{- if and (eq .chezmoi.os "linux") (lookPath "wslpath") -}}
 #!/bin/bash
 # Ubuntu/WSL bootstrap
-# hash: {{ include "packages/apt.txt" | sha256sum }}
+# hash: {{ include "packages/apt.txt" | sha256sum }}-{{ and (hasKey . "use_zsh") .use_zsh }}
 set -euo pipefail
 
 echo "==> Running Ubuntu/WSL bootstrap..."
@@ -17,6 +17,7 @@ fi
 sudo apt-get update
 sudo apt-get install -y $(grep -v '^#' "{{ .chezmoi.sourceDir }}/packages/apt.txt" | grep -v '^$' | tr '\n' ' ')
 
+{{ if and (hasKey . "use_zsh") .use_zsh -}}
 # Install powerlevel10k
 if [ ! -d "$HOME/powerlevel10k" ]; then
     echo "Installing powerlevel10k..."
@@ -37,6 +38,13 @@ if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
 fi
 
+# Set zsh as default shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "Setting zsh as default shell..."
+    chsh -s "$(which zsh)"
+fi
+{{ end -}}
+
 # Install Hasklug Nerd Font
 FONT_DIR="$HOME/.local/share/fonts"
 if [ ! -f "$FONT_DIR/HasklugNerdFont-Regular.ttf" ]; then
@@ -47,12 +55,6 @@ if [ ! -f "$FONT_DIR/HasklugNerdFont-Regular.ttf" ]; then
     unzip -o /tmp/Hasklig.zip -d "$FONT_DIR"
     fc-cache -f "$FONT_DIR"
     rm -f /tmp/Hasklig.zip
-fi
-
-# Set zsh as default shell
-if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "Setting zsh as default shell..."
-    chsh -s "$(which zsh)"
 fi
 
 echo "==> Ubuntu/WSL bootstrap complete."

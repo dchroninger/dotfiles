@@ -13,6 +13,13 @@ packages
 .p10k.zsh
 {{ end }}
 
+{{ if not (and (hasKey . "use_zsh") .use_zsh) }}
+.zshrc
+.zsh
+.zsh_profile
+.p10k.zsh
+{{ end }}
+
 {{ if ne .chezmoi.os "darwin" }}
 .config/yabai
 .config/skhd
