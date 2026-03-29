@@ -6,4 +6,3 @@ Inkscape.Inkscape
 HTTPie.HTTPie
 WinSCP.WinSCP
 Microsoft.VisualStudioCode
-GhosttyOrg.Ghostty
