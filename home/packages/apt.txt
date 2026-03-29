@@ -5,7 +5,6 @@ tmux
 zsh
 golang-go
 nodejs
-npm
 curl
 git
 unzip
