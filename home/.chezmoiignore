@@ -1,3 +1,7 @@
+# Non-config resources used by bootstrap scripts, not deployed to ~/
+grub
+packages
+
 {{ if ne .os_family "darwin" }}
 .config/yabai
 .config/skhd
