@@ -1,0 +1,27 @@
+#!/bin/bash
+# Common bootstrap — runs on all platforms
+# hash: {{ include "packages/common.txt" | sha256sum }}
+set -euo pipefail
+
+echo "==> Running common bootstrap..."
+
+# Install oh-my-zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+# Install TPM (tmux plugin manager)
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "Installing TPM..."
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+
+# Install catppuccin tmux theme
+if [ ! -d "$HOME/.tmux/plugins/catppuccin" ]; then
+    echo "Installing catppuccin tmux theme..."
+    mkdir -p "$HOME/.tmux/plugins"
+    git clone https://github.com/catppuccin/tmux.git "$HOME/.tmux/plugins/catppuccin"
+fi
+
+echo "==> Common bootstrap complete."

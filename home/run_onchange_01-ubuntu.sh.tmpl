@@ -1,0 +1,59 @@
+{{- if and (eq .distro "ubuntu") .is_wsl -}}
+#!/bin/bash
+# Ubuntu/WSL bootstrap
+# hash: {{ include "packages/apt.txt" | sha256sum }}
+set -euo pipefail
+
+echo "==> Running Ubuntu/WSL bootstrap..."
+
+# Install gh CLI (official repo)
+if ! command -v gh &>/dev/null; then
+    echo "Adding GitHub CLI apt repository..."
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+fi
+
+# Install apt packages
+sudo apt-get update
+sudo apt-get install -y $(grep -v '^#' "{{ .chezmoi.sourceDir }}/packages/apt.txt" | grep -v '^$' | tr '\n' ' ')
+
+# Install powerlevel10k
+if [ ! -d "$HOME/powerlevel10k" ]; then
+    echo "Installing powerlevel10k..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/powerlevel10k"
+fi
+
+# Install zsh-autosuggestions
+if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+    echo "Installing zsh-autosuggestions..."
+    mkdir -p "$HOME/.zsh"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+fi
+
+# Install zsh-syntax-highlighting
+if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
+    echo "Installing zsh-syntax-highlighting..."
+    mkdir -p "$HOME/.zsh"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
+fi
+
+# Install Hasklug Nerd Font
+FONT_DIR="$HOME/.local/share/fonts"
+if [ ! -f "$FONT_DIR/HasklugNerdFont-Regular.ttf" ]; then
+    echo "Installing Hasklug Nerd Font..."
+    mkdir -p "$FONT_DIR"
+    NERD_FONT_VER="v3.3.0"
+    curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONT_VER}/Hasklig.zip" -o /tmp/Hasklig.zip
+    unzip -o /tmp/Hasklig.zip -d "$FONT_DIR"
+    fc-cache -f "$FONT_DIR"
+    rm -f /tmp/Hasklig.zip
+fi
+
+# Set zsh as default shell
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "Setting zsh as default shell..."
+    chsh -s "$(which zsh)"
+fi
+
+echo "==> Ubuntu/WSL bootstrap complete."
+{{- end }}

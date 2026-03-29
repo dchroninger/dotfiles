@@ -1,0 +1,26 @@
+# Core tools
+brew "gh"
+brew "neovim"
+brew "tmux"
+brew "zsh"
+brew "go"
+brew "node@22"
+brew "ruby"
+brew "thefuck"
+brew "coreutils"
+
+# Zsh ecosystem
+brew "powerlevel10k"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
+# Window management
+tap "koekeishiya/formulae"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
+
+# Cask apps
+cask "ghostty"
+
+# Fonts
+cask "font-hasklug-nerd-font"

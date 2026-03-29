@@ -1,0 +1,21 @@
+# Core tools
+github-cli
+neovim
+tmux
+zsh
+go
+nodejs
+npm
+ghostty
+thefuck
+
+# Zsh plugins
+zsh-autosuggestions
+zsh-syntax-highlighting
+
+# Desktop dependencies
+hyprland
+waybar
+rofi-wayland
+waypaper
+qt6ct

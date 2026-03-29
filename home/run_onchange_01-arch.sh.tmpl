@@ -1,0 +1,27 @@
+{{- if and (eq .distro "arch") .has_desktop -}}
+#!/bin/bash
+# Arch Linux (desktop) bootstrap
+# hash: {{ include "packages/pacman.txt" | sha256sum }}-{{ include "packages/aur.txt" | sha256sum }}
+set -euo pipefail
+
+echo "==> Running Arch bootstrap..."
+
+# Install pacman packages
+sudo pacman -S --needed --noconfirm $(grep -v '^#' "{{ .chezmoi.sourceDir }}/packages/pacman.txt" | grep -v '^$' | tr '\n' ' ')
+
+# Install AUR packages (requires yay)
+if command -v yay &>/dev/null; then
+    yay -S --needed --noconfirm $(grep -v '^#' "{{ .chezmoi.sourceDir }}/packages/aur.txt" | grep -v '^$' | tr '\n' ' ')
+else
+    echo "WARNING: yay not found. Install yay first, then re-run chezmoi apply."
+fi
+
+# Install GRUB themes
+if [ -d "{{ .chezmoi.sourceDir }}/grub/themes" ]; then
+    echo "Installing GRUB themes..."
+    sudo mkdir -p /boot/grub/themes
+    sudo cp -r "{{ .chezmoi.sourceDir }}/grub/themes/"* /boot/grub/themes/
+fi
+
+echo "==> Arch bootstrap complete."
+{{- end }}

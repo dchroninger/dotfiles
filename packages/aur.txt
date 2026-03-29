@@ -1,0 +1,5 @@
+# Zsh theme
+zsh-theme-powerlevel10k
+
+# Fonts
+ttf-hasklug-nerd

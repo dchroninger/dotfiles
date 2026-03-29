@@ -1,0 +1,12 @@
+# Core tools
+gh
+neovim
+tmux
+zsh
+golang-go
+nodejs
+npm
+curl
+git
+unzip
+fontconfig
