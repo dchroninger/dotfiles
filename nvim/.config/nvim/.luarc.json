@@ -1,5 +1,0 @@
-{
-  "diagnostics.globals": ["Offset", "vim",
-        "M",
-        "LazyVim"]
-}
