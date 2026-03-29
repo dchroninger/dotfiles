@@ -4,7 +4,7 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 export GIT_EDITOR="nvim"
-export DOTFILES="$HOME/.dotfiles"
+export DOTFILES="$HOME/dotfiles"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 

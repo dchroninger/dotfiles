@@ -1,5 +1,5 @@
 # Minimal bash config for Docker/servers/environments without zsh
-# curl -sL https://raw.githubusercontent.com/dchroninger/.dotfiles/main/home/dot_bashrc -o ~/.bashrc
+# curl -sL https://raw.githubusercontent.com/dchroninger/dotfiles/main/home/dot_bashrc -o ~/.bashrc
 
 # Source shared shell config
 for f in ~/.config/shell/env.sh ~/.config/shell/aliases.sh ~/.config/shell/functions.sh; do
