@@ -11,7 +11,7 @@
 [pull]
     rebase = true
 
-{{- if eq .os_family "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 
 [credential]
     helper = osxkeychain

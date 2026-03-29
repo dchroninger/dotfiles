@@ -8,6 +8,12 @@ brew "node@22"
 brew "ruby"
 brew "thefuck"
 brew "coreutils"
+brew "pnpm"
+brew "sqlite"
+brew "supabase"
+brew "tree-sitter"
+brew "vercel-cli"
+brew "jq"
 
 # Zsh ecosystem
 brew "powerlevel10k"
@@ -21,6 +27,16 @@ brew "koekeishiya/formulae/skhd"
 
 # Cask apps
 cask "ghostty"
+cask "httpie"
+cask "blender"
+cask "alfred"
+cask "android-studio"
+cask "calibre"
+cask "httpie-desktop"
+cask "inkscape"
+cask "karabiner-elements"
+cask "discord"
 
 # Fonts
 cask "font-hasklug-nerd-font"
+cask "sf-symbols"

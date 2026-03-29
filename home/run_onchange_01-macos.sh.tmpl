@@ -1,4 +1,4 @@
-{{- if eq .os_family "darwin" -}}
+{{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 # macOS bootstrap
 # hash: {{ include "packages/Brewfile" | sha256sum }}

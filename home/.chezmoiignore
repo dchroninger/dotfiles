@@ -2,7 +2,7 @@
 grub
 packages
 
-{{ if eq .os_family "windows" }}
+{{ if eq .chezmoi.os "windows" }}
 # Windows only gets: .bashrc, .gitconfig, and bootstrap scripts
 # Ghostty config is copied to %LOCALAPPDATA% by the bootstrap script
 .config
@@ -13,13 +13,13 @@ packages
 .p10k.zsh
 {{ end }}
 
-{{ if ne .os_family "darwin" }}
+{{ if ne .chezmoi.os "darwin" }}
 .config/yabai
 .config/skhd
 .config/karabiner
 {{ end }}
 
-{{ if not .has_desktop }}
+{{ if not (and (hasKey . "has_desktop") .has_desktop) }}
 .config/hypr
 .config/waybar
 .config/rofi

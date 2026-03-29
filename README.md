@@ -5,33 +5,36 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/). Supports macO
 ## Quick Start
 
 **macOS / Linux / WSL:**
+
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)"
 chezmoi init --apply dchroninger
 ```
 
 **Windows** (PowerShell as Admin):
+
 ```powershell
 winget install twpayne.chezmoi
 chezmoi init --apply dchroninger
 ```
 
 **Existing clone:**
+
 ```bash
 chezmoi init --source ~/dotfiles --apply
 ```
 
 ## What's Included
 
-| Layer | Configs | Platforms |
-|-------|---------|-----------|
-| Shell | zsh + p10k, bash fallback, shared aliases/env/functions | All |
-| Editor | Neovim (LazyVim) | All |
-| Terminal | Ghostty, tmux (catppuccin) | All |
-| Git | Templated .gitconfig with OS-specific credential helpers | All |
-| Desktop | Hyprland, Waybar, Rofi, Waypaper, ML4W, Qt6ct | Arch |
-| macOS WM | Yabai, skhd, Karabiner | macOS |
-| Apps | 8 winget packages (VS Code, Obsidian, PowerToys, etc.) | Windows |
+| Layer    | Configs                                                  | Platforms |
+| -------- | -------------------------------------------------------- | --------- |
+| Shell    | zsh + p10k, bash fallback, shared aliases/env/functions  | All       |
+| Editor   | Neovim (LazyVim)                                         | All       |
+| Terminal | Ghostty, tmux (catppuccin)                               | All       |
+| Git      | Templated .gitconfig with OS-specific credential helpers | All       |
+| Desktop  | Hyprland, Waybar, Rofi, Waypaper, ML4W, Qt6ct            | Arch      |
+| macOS WM | Yabai, skhd, Karabiner                                   | macOS     |
+| Apps     | 8 winget packages (VS Code, Obsidian, PowerToys, etc.)   | Windows   |
 
 ## How It Works
 
@@ -54,6 +57,7 @@ Edit the relevant file in `home/packages/`, then run `chezmoi apply`:
 ## Updating
 
 Pull latest changes and apply on any machine:
+
 ```bash
 chezmoi update
 ```

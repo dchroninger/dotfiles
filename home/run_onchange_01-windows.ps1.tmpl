@@ -1,4 +1,4 @@
-{{- if eq .os_family "windows" -}}
+{{- if eq .chezmoi.os "windows" -}}
 # Windows bootstrap — installs apps via winget and configures Ghostty
 # hash: {{ include "packages/winget.txt" | sha256sum }}
 

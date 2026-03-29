@@ -13,9 +13,9 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git web-search)
 
 # Powerlevel10k theme — location varies by platform
-{{- if eq .os_family "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-{{- else if eq .distro "arch" }}
+{{- else if eq .chezmoi.osRelease.id "arch" }}
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 {{- else }}
 [[ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -24,10 +24,10 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source $ZSH/oh-my-zsh.sh
 
 # Zsh plugins — location varies by platform
-{{- if eq .os_family "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-{{- else if eq .distro "arch" }}
+{{- else if eq .chezmoi.osRelease.id "arch" }}
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{- else }}
@@ -38,7 +38,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Catppuccin syntax highlighting theme
 [[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
-{{- if eq .os_family "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 
 # macOS-specific PATH
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"

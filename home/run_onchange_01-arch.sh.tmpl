@@ -1,4 +1,4 @@
-{{- if and (eq .distro "arch") .has_desktop -}}
+{{- if and (eq .chezmoi.os "linux") (hasKey . "has_desktop") .has_desktop -}}
 #!/bin/bash
 # Arch Linux (desktop) bootstrap
 # hash: {{ include "packages/pacman.txt" | sha256sum }}-{{ include "packages/aur.txt" | sha256sum }}

@@ -1,4 +1,4 @@
-{{- if and (eq .distro "ubuntu") .is_wsl -}}
+{{- if and (eq .chezmoi.os "linux") (lookPath "wslpath") -}}
 #!/bin/bash
 # Ubuntu/WSL bootstrap
 # hash: {{ include "packages/apt.txt" | sha256sum }}
