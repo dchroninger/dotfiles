@@ -1,0 +1,28 @@
+{{- /* Detect OS */ -}}
+{{- $osFamily := .chezmoi.os -}}
+{{- $distro := "" -}}
+{{- $isWsl := false -}}
+{{- $hasDesktop := false -}}
+
+{{- if eq .chezmoi.os "windows" -}}
+{{-   writeToStdout "This dotfiles repo uses chezmoi on Linux/macOS only.\nFor Windows setup, run: powershell -File windows/setup.ps1\nThen set up WSL and run chezmoi init inside WSL.\n" -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hasDesktop = true -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $distro = .chezmoi.osRelease.id -}}
+{{-   if lookPath "wslpath" -}}
+{{-     $isWsl = true -}}
+{{-   else -}}
+{{-     $hasDesktop = promptBoolOnce . "has_desktop" "Does this machine have a desktop environment" -}}
+{{-   end -}}
+{{- end -}}
+
+[data]
+    os_family = {{ $osFamily | quote }}
+    distro = {{ $distro | quote }}
+    is_wsl = {{ $isWsl }}
+    has_desktop = {{ $hasDesktop }}

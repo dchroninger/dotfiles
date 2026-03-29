@@ -1,0 +1,15 @@
+{{ if ne .os_family "darwin" }}
+.config/yabai
+.config/skhd
+.config/karabiner
+{{ end }}
+
+{{ if not .has_desktop }}
+.config/hypr
+.config/waybar
+.config/rofi
+.config/waypaper
+.config/borders
+.config/ml4w
+.config/qt6ct
+{{ end }}
