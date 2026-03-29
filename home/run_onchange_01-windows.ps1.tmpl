@@ -11,8 +11,9 @@ winget source update --name winget 2>$null
 # Winget apps
 $apps = @(
 {{- range (include "packages/winget.txt" | splitList "\n") }}
-{{-   if and (ne . "") (not (hasPrefix "#" .)) }}
-    "{{ . }}"
+{{-   $line := . | trim }}
+{{-   if and (ne $line "") (not (hasPrefix "#" $line)) }}
+    "{{ $line }}"
 {{-   end }}
 {{- end }}
 )
