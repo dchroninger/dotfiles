@@ -1,0 +1,9 @@
+# Windows apps installed via winget
+DevToys-app.DevToys
+Microsoft.PowerToys
+Obsidian.Obsidian
+Inkscape.Inkscape
+HTTPie.HTTPie
+WinSCP.WinSCP
+Microsoft.VisualStudioCode
+GhosttyOrg.Ghostty

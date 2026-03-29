@@ -1,5 +1,6 @@
+{{- if ne .os_family "windows" -}}
 #!/bin/bash
-# Common bootstrap — runs on all platforms
+# Common bootstrap — runs on Linux and macOS
 # hash: {{ include "packages/common.txt" | sha256sum }}
 set -euo pipefail
 
@@ -25,3 +26,4 @@ if [ ! -d "$HOME/.tmux/plugins/catppuccin" ]; then
 fi
 
 echo "==> Common bootstrap complete."
+{{- end }}

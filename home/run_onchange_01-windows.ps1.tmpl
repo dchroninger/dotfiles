@@ -1,0 +1,55 @@
+{{- if eq .os_family "windows" -}}
+# Windows bootstrap — installs apps via winget and configures Ghostty
+# hash: {{ include "packages/winget.txt" | sha256sum }}
+
+Write-Host "==> Running Windows bootstrap..." -ForegroundColor Cyan
+
+# Winget apps
+$apps = @(
+{{- range (include "packages/winget.txt" | splitList "\n") }}
+{{-   if and (ne . "") (not (hasPrefix "#" .)) }}
+    "{{ . }}"
+{{-   end }}
+{{- end }}
+)
+
+foreach ($app in $apps) {
+    Write-Host "  Installing $app..."
+    winget install --id $app --accept-package-agreements --accept-source-agreements --silent 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "    OK" -ForegroundColor Green
+    } else {
+        Write-Host "    Already installed or failed" -ForegroundColor Yellow
+    }
+}
+
+# Copy Ghostty config to Windows location
+$ghosttySource = Join-Path "{{ .chezmoi.sourceDir }}" "dot_config" "ghostty" "config"
+$ghosttyDest = Join-Path $env:LOCALAPPDATA "ghostty"
+
+if (Test-Path $ghosttySource) {
+    Write-Host "`n==> Copying Ghostty config..." -ForegroundColor Cyan
+    New-Item -ItemType Directory -Path $ghosttyDest -Force | Out-Null
+    Copy-Item $ghosttySource -Destination (Join-Path $ghosttyDest "config") -Force
+    Write-Host "  Config copied to $ghosttyDest\config"
+}
+
+# WSL setup
+Write-Host "`n==> Checking WSL..." -ForegroundColor Cyan
+$wslStatus = wsl --list --quiet 2>$null
+if (-not $wslStatus) {
+    Write-Host "  Installing WSL (Ubuntu)..."
+    wsl --install -d Ubuntu
+    Write-Host "  WSL installed. Restart your computer to complete setup." -ForegroundColor Yellow
+} else {
+    Write-Host "  WSL already installed."
+}
+
+Write-Host "`n==> Windows bootstrap complete!" -ForegroundColor Green
+Write-Host ""
+Write-Host "Next steps:" -ForegroundColor Cyan
+Write-Host "  1. Restart (if WSL was just installed)"
+Write-Host "  2. Open WSL and run:"
+Write-Host "     sh -c '`$(curl -fsLS get.chezmoi.io)'"
+Write-Host "     chezmoi init --apply dchroninger"
+{{- end }}

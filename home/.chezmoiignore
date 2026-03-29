@@ -2,6 +2,17 @@
 grub
 packages
 
+{{ if eq .os_family "windows" }}
+# Windows only gets: .bashrc, .gitconfig, and bootstrap scripts
+# Ghostty config is copied to %LOCALAPPDATA% by the bootstrap script
+.config
+.zshrc
+.zsh
+.zsh_profile
+.tmux.conf
+.p10k.zsh
+{{ end }}
+
 {{ if ne .os_family "darwin" }}
 .config/yabai
 .config/skhd

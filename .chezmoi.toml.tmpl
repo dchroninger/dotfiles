@@ -4,10 +4,6 @@
 {{- $isWsl := false -}}
 {{- $hasDesktop := false -}}
 
-{{- if eq .chezmoi.os "windows" -}}
-{{-   writeToStdout "This dotfiles repo uses chezmoi on Linux/macOS only.\nFor Windows setup, run: powershell -File windows/setup.ps1\nThen set up WSL and run chezmoi init inside WSL.\n" -}}
-{{- end -}}
-
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $hasDesktop = true -}}
 {{- end -}}
@@ -20,6 +16,8 @@
 {{-     $hasDesktop = promptBoolOnce . "has_desktop" "Does this machine have a desktop environment" -}}
 {{-   end -}}
 {{- end -}}
+
+{{- /* Windows: no questions needed, just install apps */ -}}
 
 [data]
     os_family = {{ $osFamily | quote }}
