@@ -4,6 +4,10 @@
 
 Write-Host "==> Running Windows bootstrap..." -ForegroundColor Cyan
 
+# Update winget source index
+Write-Host "  Updating winget sources..."
+winget source update --name winget 2>$null
+
 # Winget apps
 $apps = @(
 {{- range (include "packages/winget.txt" | splitList "\n") }}
@@ -24,7 +28,7 @@ foreach ($app in $apps) {
 }
 
 # Copy Ghostty config to Windows location
-$ghosttySource = Join-Path "{{ .chezmoi.sourceDir }}" "dot_config" "ghostty" "config"
+$ghosttySource = Join-Path "{{ .chezmoi.sourceDir }}" (Join-Path "dot_config" (Join-Path "ghostty" "config"))
 $ghosttyDest = Join-Path $env:LOCALAPPDATA "ghostty"
 
 if (Test-Path $ghosttySource) {
