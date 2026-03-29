@@ -1,16 +1,18 @@
 {{- if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 # Common bootstrap — runs on Linux and macOS
-# hash: {{ include "packages/common.txt" | sha256sum }}
+# hash: {{ include "packages/common.txt" | sha256sum }}-{{ and (hasKey . "use_zsh") .use_zsh }}
 set -euo pipefail
 
 echo "==> Running common bootstrap..."
 
-# Install oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
+{{ if and (hasKey . "use_zsh") .use_zsh -}}
+# Install oh-my-zsh (requires zsh to be installed first)
+if command -v zsh &>/dev/null && [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
+{{ end -}}
 
 # Install TPM (tmux plugin manager)
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
