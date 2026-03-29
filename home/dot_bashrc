@@ -1,0 +1,10 @@
+# Minimal bash config for Docker/servers/environments without zsh
+# curl -sL https://raw.githubusercontent.com/dchroninger/.dotfiles/main/home/dot_bashrc -o ~/.bashrc
+
+# Source shared shell config
+for f in ~/.config/shell/env.sh ~/.config/shell/aliases.sh ~/.config/shell/functions.sh; do
+    [ -f "$f" ] && . "$f"
+done
+
+# Simple prompt
+PS1='\[\e[1;34m\]\w\[\e[0m\] \$ '

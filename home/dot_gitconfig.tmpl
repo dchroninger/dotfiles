@@ -1,0 +1,31 @@
+[user]
+    name = Dave Chroninger
+    email = dchroninger@users.noreply.github.com
+
+[core]
+    editor = nvim
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+{{- if eq .os_family "darwin" }}
+
+[credential]
+    helper = osxkeychain
+{{- else }}
+
+[credential]
+    helper = store
+{{- end }}
+
+[alias]
+    co = checkout
+    br = branch
+    st = status
+
+# Machine-specific overrides (work email, signing, etc.)
+[include]
+    path = ~/.gitconfig.local

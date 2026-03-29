@@ -1,0 +1,7 @@
+theme = dark:catppuccin-frappe,light:catppuccin-latte
+window-padding-x = 8
+window-padding-y = 10,1
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+macos-auto-secure-input = true
+macos-secure-input-indication = false

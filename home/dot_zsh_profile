@@ -1,0 +1,2 @@
+# Source shared environment (PATH, EDITOR, etc.)
+[ -f ~/.config/shell/env.sh ] && . ~/.config/shell/env.sh
