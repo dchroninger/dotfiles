@@ -11,8 +11,9 @@ window-padding-y = 10,1
 window-save-state = always
 # opaque window; wallpaper is blended into the bg below, not the desktop
 background-opacity = 1
-# personal wallpaper, kept out of the repo; ghostty falls back to plain bg if missing
-background-image = ~/wallpapers/terminal/bg.jpeg
+# personal wallpaper, kept out of the repo; falls back to plain bg if missing.
+# extensionless on purpose: ghostty sniffs PNG/JPEG magic bytes, so any format works
+background-image = ~/wallpapers/terminal/bg
 background-image-fit = cover
 # mix image w/ mocha bg so the theme dominates and the image reads as texture
 background-image-opacity = 0.15
