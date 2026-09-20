@@ -78,12 +78,12 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:lavender"
-format = '[[ $symbol $branch ](fg:crust bg:lavender)]($style)'
+style = "bg:pink"
+format = '[[ $symbol $branch ](fg:crust bg:pink)]($style)'
 
 [git_status]
-style = "bg:lavender"
-format = '[[($all_status$ahead_behind )](fg:crust bg:lavender)]($style)'
+style = "bg:pink"
+format = '[[($all_status$ahead_behind )](fg:crust bg:pink)]($style)'
 
 [nodejs]
 symbol = ""
@@ -289,8 +289,8 @@ format = '[](fg:blue)'
 
 [custom.dir_to_git]
 when = 'git rev-parse --is-inside-work-tree'
-format = '[](fg:blue bg:lavender)'
+format = '[](fg:blue bg:pink)'
 
 [custom.git_cap]
 when = 'git rev-parse --is-inside-work-tree'
-format = '[](fg:lavender)'
+format = '[](fg:pink)'
