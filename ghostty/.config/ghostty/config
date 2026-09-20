@@ -14,6 +14,8 @@ background-blur = 5
 # personal wallpaper, kept out of the repo; ghostty falls back to plain bg if missing
 background-image = ~/wallpapers/terminal/bg.jpeg
 background-image-fit = cover
+# mix image w/ mocha bg so the theme dominates and the image reads as texture
+background-image-opacity = 0.35
 
 # input / clipboard
 macos-option-as-alt = true
