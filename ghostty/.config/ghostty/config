@@ -11,6 +11,9 @@ window-padding-y = 10,1
 window-save-state = always
 background-opacity = 0.80
 background-blur = 5
+# personal wallpaper, kept out of the repo; ghostty falls back to plain bg if missing
+background-image = ~/wallpapers/terminal/bg.png
+background-image-fit = cover
 
 # input / clipboard
 macos-option-as-alt = true
