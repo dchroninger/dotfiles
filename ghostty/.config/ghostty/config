@@ -51,3 +51,6 @@ quick-terminal-size = 50%,38%
 
 # keybinds
 keybind = global:alt+space=toggle_quick_terminal
+# fullscreen (native, same as the green button). cmd+enter and ctrl+cmd+f are
+# ghostty defaults; cmd+opt+f added because globe+f isn't remappable on this keyboard
+keybind = super+alt+f=toggle_fullscreen
