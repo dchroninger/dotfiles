@@ -38,9 +38,9 @@ macos-secure-input-indication = false
 # updates
 auto-update = download
 
-# quick terminal (cmd+`): drops from the top, 40% tall, half the ultrawide, centered
+# quick terminal (cmd+`): drops from the top, centered. 35% tall x 38% wide ≈ 500x1300px on 3440x1440
 quick-terminal-position = top
-quick-terminal-size = 40%,50%
+quick-terminal-size = 35%,38%
 
 # keybinds
 keybind = global:super+grave_accent=toggle_quick_terminal
