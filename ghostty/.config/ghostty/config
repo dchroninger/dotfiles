@@ -9,8 +9,8 @@ adjust-cell-height = 10%
 window-padding-x = 8
 window-padding-y = 10,1
 window-save-state = always
-background-opacity = 0.80
-background-blur = 5
+# opaque window; wallpaper is blended into the bg below, not the desktop
+background-opacity = 1
 # personal wallpaper, kept out of the repo; ghostty falls back to plain bg if missing
 background-image = ~/wallpapers/terminal/bg.jpeg
 background-image-fit = cover
