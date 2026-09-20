@@ -26,16 +26,6 @@ cursor-style-blink = false
 
 # shell / ssh
 # always land in tmux (attach/create "main") — except the cmd+` quick terminal,
-# which stays a plain shell as a scratch/utility terminal. runs via /bin/sh -c.
-command = shell:if [ -n "$GHOSTTY_QUICK_TERMINAL" ]; then exec /bin/zsh -l; else exec /opt/homebrew/bin/tmux new-session -A -s main; fi
-shell-integration-features = ssh-env,ssh-terminfo
-
-# security
-macos-auto-secure-input = true
-macos-secure-input-indication = false
-
-# updates
-auto-update = download
-
-# keybinds
-keybind = global:super+grave_accent=toggle_quick_terminal
+# which stays a plain shell. Logic lives in the script: ghostty wraps `command`
+# in `bash -c "exec -l …"`, so no inline shell syntax here.
+command = ~/.config/ghostty/ghostty-shell
