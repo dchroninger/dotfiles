@@ -49,6 +49,26 @@ export FZF_DEFAULT_OPTS=" \
 # --- prompt ---
 eval "$(starship init zsh)"
 
+# transient prompt: once a line is accepted, collapse it to `❯ cmd` so only the
+# active prompt shows the pills (same behavior p10k had). Must come after plugins.
+zle-line-init() {
+    emulate -L zsh
+    [[ $CONTEXT == start ]] || return 0
+    while true; do
+        zle .recursive-edit
+        local -i ret=$?
+        [[ $ret == 0 && $KEYS == $'\4' ]] || break
+        [[ -o ignore_eof ]] || exit 0
+    done
+    local saved_prompt=$PROMPT saved_rprompt=$RPROMPT
+    PROMPT='%F{green}❯%f ' RPROMPT=''
+    zle .reset-prompt
+    PROMPT=$saved_prompt RPROMPT=$saved_rprompt
+    (( ret )) && zle .send-break || zle .accept-line
+    return ret
+}
+zle -N zle-line-init
+
 # sdkman (must be at end of file)
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
