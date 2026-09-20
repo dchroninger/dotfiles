@@ -36,7 +36,7 @@ bgroll() {
 }
 
 _ghostty_reload() {
-    pgrep -qi "^ghostty$" || pgrep -qf "Ghostty.app" || return 0   # works inside tmux too (TERM_PROGRAM is "tmux" there)
+    ps -axo comm | grep -q "Ghostty.app/Contents/MacOS/ghostty" || return 0   # works inside tmux too
     osascript -e 'tell application "System Events" to tell process "Ghostty" to keystroke "," using {command down, shift down}' 2>/dev/null \
         || echo "  (auto-reload blocked; press cmd+shift+, — or grant Ghostty Accessibility access)"
 }
