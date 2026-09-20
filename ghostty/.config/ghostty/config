@@ -10,7 +10,7 @@ window-padding-x = 8
 window-padding-y = 10,1
 window-save-state = always
 background-opacity = 0.85
-background-blur = 8
+background-blur = 6
 
 # input / clipboard
 macos-option-as-alt = true
