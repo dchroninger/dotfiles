@@ -43,11 +43,11 @@ macos-secure-input-indication = false
 # updates
 auto-update = download
 
-# quick terminal (cmd+`): drops from the top, centered. 35% tall x 38% wide ≈ 500x1300px on 3440x1440.
+# quick terminal (cmd+`): drops from the top, centered. 50% tall x 38% wide ≈ 700x1300px on 3440x1440.
 # ghostty caches the last closed frame per screen, so changing the size needs a
 # full ghostty restart (or drag-resize the quick terminal once).
 quick-terminal-position = top
-quick-terminal-size = 35%,38%
+quick-terminal-size = 50%,38%
 
 # keybinds
 keybind = global:super+grave_accent=toggle_quick_terminal
