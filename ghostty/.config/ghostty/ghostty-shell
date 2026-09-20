@@ -1,7 +1,8 @@
 #!/bin/sh
-# Ghostty `command`. Quick terminal (cmd+`) -> plain shell as a utility terminal;
-# every other window/tab -> tmux session "main" (attach or create).
+# Ghostty `command`. Every window/tab lands in tmux so the look (theme,
+# wallpaper, status bar) is identical everywhere. The cmd+` quick terminal
+# gets its own session "quick" so it never hijacks whatever "main" is showing.
 if [ -n "$GHOSTTY_QUICK_TERMINAL" ]; then
-    exec /bin/zsh -l
+    exec /opt/homebrew/bin/tmux new-session -A -s quick
 fi
 exec /opt/homebrew/bin/tmux new-session -A -s main

@@ -8,7 +8,12 @@ adjust-cell-height = 10%
 # window
 window-padding-x = 8
 window-padding-y = 10,1
-window-save-state = always
+# never restore windows: every window is just `tmux attach main` so there's
+# nothing worth restoring, and restoring the cmd+` quick terminal is actively
+# broken in 1.3.x — the restored surface loses GHOSTTY_QUICK_TERMINAL (so it
+# attaches to "main" and shrinks it to 21 rows) and its saved frame overrides
+# quick-terminal-size forever (full width x 400px).
+window-save-state = never
 # opaque window; wallpaper is blended into the bg below, not the desktop
 background-opacity = 1
 # personal wallpaper, kept out of the repo. `bgroll` (shell fn) writes this file
@@ -25,8 +30,8 @@ mouse-hide-while-typing = true
 cursor-style-blink = false
 
 # shell / ssh
-# always land in tmux (attach/create "main") — except the cmd+` quick terminal,
-# which stays a plain shell. Logic lives in the script: ghostty wraps `command`
+# always land in tmux: windows attach/create "main", the cmd+` quick terminal
+# gets its own "quick" session. Logic lives in the script: ghostty wraps `command`
 # in `bash -c "exec -l …"`, so no inline shell syntax here.
 command = ~/.config/ghostty/ghostty-shell
 shell-integration-features = ssh-env,ssh-terminfo
@@ -38,7 +43,9 @@ macos-secure-input-indication = false
 # updates
 auto-update = download
 
-# quick terminal (cmd+`): drops from the top, centered. 35% tall x 38% wide ≈ 500x1300px on 3440x1440
+# quick terminal (cmd+`): drops from the top, centered. 35% tall x 38% wide ≈ 500x1300px on 3440x1440.
+# ghostty caches the last closed frame per screen, so changing the size needs a
+# full ghostty restart (or drag-resize the quick terminal once).
 quick-terminal-position = top
 quick-terminal-size = 35%,38%
 
