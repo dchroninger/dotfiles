@@ -1,13 +1,16 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:peach)\
+[](fg:red)\
+$os\
+$username\
+[](fg:red bg:peach)\
 $directory\
-[](fg:peach)\
-( [](fg:yellow)\
+${custom.dir_cap}\
+${custom.dir_to_git}\
 $git_branch\
 $git_status\
-[](fg:yellow))\
+${custom.git_cap}\
 ( [](fg:green)\
 $c\
 $rust\
@@ -29,7 +32,7 @@ $character"""
 palette = 'catppuccin_mocha'
 
 [os]
-disabled = true
+disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
@@ -55,7 +58,10 @@ Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
 [username]
-disabled = true
+show_always = true
+style_user = "bg:red fg:crust"
+style_root = "bg:red fg:crust"
+format = '[ $user ]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
@@ -275,3 +281,16 @@ surface0 = "#363a4f"
 base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
+
+# dir pill edge: rounded cap outside a repo, arrow into the git pill inside one
+[custom.dir_cap]
+when = '! git rev-parse --is-inside-work-tree'
+format = '[](fg:peach)'
+
+[custom.dir_to_git]
+when = 'git rev-parse --is-inside-work-tree'
+format = '[](fg:peach bg:yellow)'
+
+[custom.git_cap]
+when = 'git rev-parse --is-inside-work-tree'
+format = '[](fg:yellow)'
