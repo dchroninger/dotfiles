@@ -1,10 +1,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:mauve)\
+[](fg:blue)\
 $os\
 $username\
-[](fg:mauve bg:blue)\
+[](fg:blue bg:mauve)\
 $directory\
 ${custom.dir_cap}\
 ${custom.dir_to_git}\
@@ -33,7 +33,7 @@ palette = 'catppuccin_mocha'
 
 [os]
 disabled = false
-style = "bg:mauve fg:crust"
+style = "bg:blue fg:crust"
 
 [os.symbols]
 Windows = ""
@@ -59,12 +59,12 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = true
-style_user = "bg:mauve fg:crust"
-style_root = "bg:mauve fg:crust"
+style_user = "bg:blue fg:crust"
+style_root = "bg:blue fg:crust"
 format = '[ $user ]($style)'
 
 [directory]
-style = "bg:blue fg:crust"
+style = "bg:mauve fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -285,11 +285,11 @@ crust = "#181926"
 # dir pill edge: rounded cap outside a repo, arrow into the git pill inside one
 [custom.dir_cap]
 when = '! git rev-parse --is-inside-work-tree'
-format = '[](fg:blue)'
+format = '[](fg:mauve)'
 
 [custom.dir_to_git]
 when = 'git rev-parse --is-inside-work-tree'
-format = '[](fg:blue bg:pink)'
+format = '[](fg:mauve bg:pink)'
 
 [custom.git_cap]
 when = 'git rev-parse --is-inside-work-tree'
