@@ -3,7 +3,6 @@
 format = """
 [](red)\
 $os\
-$username\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -20,12 +19,10 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
+[ ](fg:green)\
+$fill\
 $cmd_duration\
+$time\
 $line_break\
 $character"""
 
@@ -58,10 +55,7 @@ Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
 [username]
-show_always = true
-style_user = "bg:red fg:crust"
-style_root = "bg:red fg:crust"
-format = '[ $user]($style)'
+disabled = true
 
 [directory]
 style = "bg:peach fg:crust"
@@ -146,14 +140,20 @@ style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
+[fill]
+symbol = " "
+
+[cmd_duration]
+min_time = 2000
+format = '[$duration ](fg:overlay1)'
+
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+format = '[$time](fg:overlay1)'
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
@@ -163,14 +163,6 @@ vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
-
-[cmd_duration]
-show_milliseconds = true
-format = " in $duration "
-style = "bg:lavender"
-disabled = false
-show_notifications = true
-min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
