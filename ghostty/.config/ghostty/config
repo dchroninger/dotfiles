@@ -7,7 +7,7 @@ adjust-cell-height = 10%
 
 # window
 window-padding-x = 8
-window-padding-y = 10,1
+window-padding-y = 4,1
 # no titlebar so the wallpaper runs top to bottom; rounded frame/shadow stay.
 # lost the traffic lights -> fullscreen is cmd+opt+f, drag = opt+click frame edge
 macos-titlebar-style = hidden
