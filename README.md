@@ -11,6 +11,7 @@ git clone git@github.com:dchroninger/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 brew bundle            # installs everything in Brewfile
 stow zsh shell starship tmux ghostty karabiner gh nvim scripts
+sh macos-defaults.sh   # system-wide macOS defaults (app shortcuts etc.)
 ```
 
 ## Packages
@@ -28,6 +29,7 @@ stow zsh shell starship tmux ghostty karabiner gh nvim scripts
 | `scripts`   | `~/.config/{colors,icons,theme}.sh`     |
 
 `surfingkeys/config.js` is loaded manually into the browser extension.
+`macos-defaults.sh` is not a stow package; run it directly (idempotent).
 
 ## Maintenance
 
