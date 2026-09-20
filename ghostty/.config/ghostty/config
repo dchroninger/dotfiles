@@ -25,8 +25,9 @@ mouse-hide-while-typing = true
 cursor-style-blink = false
 
 # shell / ssh
-# always land in tmux: attach to "main" or create it (absolute path — Dock launch has no brew PATH)
-command = /opt/homebrew/bin/tmux new-session -A -s main
+# always land in tmux (attach/create "main") — except the cmd+` quick terminal,
+# which stays a plain shell as a scratch/utility terminal. runs via /bin/sh -c.
+command = shell:if [ -n "$GHOSTTY_QUICK_TERMINAL" ]; then exec /bin/zsh -l; else exec /opt/homebrew/bin/tmux new-session -A -s main; fi
 shell-integration-features = ssh-env,ssh-terminfo
 
 # security
