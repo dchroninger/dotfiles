@@ -15,7 +15,7 @@ background-opacity = 1
 background-image = ~/wallpapers/terminal/bg.jpeg
 background-image-fit = cover
 # mix image w/ mocha bg so the theme dominates and the image reads as texture
-background-image-opacity = 0.2
+background-image-opacity = 0.15
 
 # input / clipboard
 macos-option-as-alt = true
