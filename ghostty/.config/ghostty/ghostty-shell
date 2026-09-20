@@ -1,6 +1,6 @@
 #!/bin/sh
 # Ghostty `command`. Every window/tab lands in tmux so the look (theme,
-# wallpaper, status bar) is identical everywhere. The cmd+` quick terminal
+# wallpaper, status bar) is identical everywhere. The opt+space quick terminal
 # gets its own session "quick" so it never hijacks whatever "main" is showing.
 if [ -n "$GHOSTTY_QUICK_TERMINAL" ]; then
     exec /opt/homebrew/bin/tmux new-session -A -s quick

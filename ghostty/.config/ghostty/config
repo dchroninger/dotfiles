@@ -9,7 +9,7 @@ adjust-cell-height = 10%
 window-padding-x = 8
 window-padding-y = 10,1
 # never restore windows: every window is just `tmux attach main` so there's
-# nothing worth restoring, and restoring the cmd+` quick terminal is actively
+# nothing worth restoring, and restoring the opt+space quick terminal is actively
 # broken in 1.3.x — the restored surface loses GHOSTTY_QUICK_TERMINAL (so it
 # attaches to "main" and shrinks it to 21 rows) and its saved frame overrides
 # quick-terminal-size forever (full width x 400px).
@@ -30,7 +30,7 @@ mouse-hide-while-typing = true
 cursor-style-blink = false
 
 # shell / ssh
-# always land in tmux: windows attach/create "main", the cmd+` quick terminal
+# always land in tmux: windows attach/create "main", the opt+space quick terminal
 # gets its own "quick" session. Logic lives in the script: ghostty wraps `command`
 # in `bash -c "exec -l …"`, so no inline shell syntax here.
 command = ~/.config/ghostty/ghostty-shell
@@ -43,11 +43,11 @@ macos-secure-input-indication = false
 # updates
 auto-update = download
 
-# quick terminal (cmd+`): drops from the top, centered. 50% tall x 38% wide ≈ 700x1300px on 3440x1440.
+# quick terminal (opt+space): drops from the top, centered. 50% tall x 38% wide ≈ 700x1300px on 3440x1440.
 # ghostty caches the last closed frame per screen, so changing the size needs a
 # full ghostty restart (or drag-resize the quick terminal once).
 quick-terminal-position = top
 quick-terminal-size = 50%,38%
 
 # keybinds
-keybind = global:super+grave_accent=toggle_quick_terminal
+keybind = global:alt+space=toggle_quick_terminal
