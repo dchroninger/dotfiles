@@ -1,9 +1,13 @@
 return {
-	"snacks.nvim",
-	opts = {
-		dashboard = {
-			preset = {
-				header = [[
+	{
+		"folke/snacks.nvim",
+		keys = {
+			{ "<leader>S", false },
+		},
+		opts = {
+			dashboard = {
+				preset = {
+					header = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⡿⣿⢏⡼⠀⢀⣾⢃⣼⠏⢠⡾⠃⣠⠏⠀⠁⣀⠀⡁⠀⠀⣠⡈⠉⡉⠉⢻⡄⠀⠀⠈⠈⢄⠐⣦
 ⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣯⣾⠃⣼⢁⢠⡿⣡⣾⠃⣴⣿⠁⣠⡟⠀⠄⠡⢀⠈⠀⣠⣱⣿⠇⠡⠄⠀⠀⢿⡆⠈⠄⡁⠈⣳⣽
 ⠄⠁⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣯⣿⠇⣼⡇⠀⣿⢓⣿⠧⣼⣻⠇⢠⣿⠁⠀⠌⠰⠀⢀⣴⣿⡟⣹⠀⠐⡌⠄⠸⡌⣿⠀⠀⠄⠄⢹⣿
@@ -30,8 +34,15 @@ return {
 ⠀⠀⠀⢀⣀⢀⡉⣴⣮⣉⣉⣹⣟⣿⡯⣭⣿⣻⣯⡿⣟⢳⡶⢤⡤⣤⣀⣀⣀⠀⠀⠀⠀⢰⣟⣛⣛⢳⡹⣎⣶⣿⣹⢣⣛⠵⣻⠆⠸⣿
 in the most disrespectful way possible
 ]],
-				keys = false,
+					keys = false,
+				},
 			},
+		},
+	},
+	{
+		"ibhagwan/fzf-lua",
+		keys = {
+			{ "<leader>,", false },
 		},
 	},
 }

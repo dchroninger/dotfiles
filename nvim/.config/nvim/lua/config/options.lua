@@ -1,10 +1,13 @@
+-- Options are automatically loaded before lazy.nvim startup.
+-- LazyVim defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 local opt = vim.opt
-local global = vim.g
 
-opt.backspace = { "indent", "eol", "start" }
+vim.g.lazyvim_picker = "fzf"
+
 opt.swapfile = false
 opt.backup = false
 opt.isfname:append("@-@")
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- treesitter folds
 opt.foldmethod = "expr"
-global.lazyvim_picker = "fzf"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

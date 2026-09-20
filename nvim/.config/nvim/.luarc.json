@@ -1,5 +1,3 @@
 {
-  "diagnostics.globals": ["Offset", "vim",
-        "M",
-        "LazyVim"]
+  "diagnostics.globals": ["vim", "LazyVim", "Snacks"]
 }
