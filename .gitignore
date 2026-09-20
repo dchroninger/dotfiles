@@ -3,3 +3,4 @@ kitty/.config/kitty/backgrounds/
 karabiner/.config/karabiner/automatic_backups
 bin
 .DS_Store
+gh/.config/gh/hosts.yml

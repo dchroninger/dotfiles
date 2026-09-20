@@ -1,60 +1,53 @@
-# Set locale variables
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# Shared shell config (env, aliases, functions)
+for f in ~/.config/shell/env.sh ~/.config/shell/aliases.sh ~/.config/shell/functions.sh; do
+    [ -f "$f" ] && . "$f"
+done
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Powerlevel10k instant prompt (must stay near top)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Source Powerlevel10k theme
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Source Oh-My-Zsh
-source $ZSH/oh-my-zsh.sh
-
-# Which plugins would you like to load?
-plugins=(git web-search)
-
-# User configuration
-alias g=git
-alias vim='nvim'
-alias gst='git status'
-alias gcm='git commit -m'
-alias dotfiles='cd ~/.dotfiles && vim'
-eval $(thefuck --alias)
-
-# Path configurations
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/fvm/default/bin:$PATH"
-export PATH="$HOME/.pub-cache/bin:$PATH"
+# --- macOS / Homebrew PATH ---
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
 
- ide() {
-  tmux split-window -v -l 30%
-  clear
-  tmux split-window -h -l 66%
-  clear
-  tmux split-window -h -l 50%
-  clear
-}
+# --- history ---
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt share_history inc_append_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks
+setopt auto_cd auto_pushd pushd_ignore_dups interactive_comments
 
-# Alias for shuf (GNU Coreutils) if installed via Homebrew
-# This ensures 'shuf' is available as 'shuf' instead of 'gshuf'
-if command -v gshuf >/dev/null 2>&1; then
-    alias shuf='gshuf'
-fi
+# --- completion ---
+fpath=(/opt/homebrew/share/zsh/site-functions "$HOME/.docker/completions" $fpath)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case-insensitive
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# Source Powerlevel10k configuration
+# --- keybinds ---
+bindkey -e
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^[[1;5C' forward-word    # ctrl-right
+bindkey '^[[1;5D' backward-word   # ctrl-left
+
+# --- prompt + plugins (Homebrew) ---
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh   # must be last plugin
+
+# --- tools ---
+command -v gshuf >/dev/null && alias shuf='gshuf'
+command -v fzf >/dev/null && source <(fzf --zsh)
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# sdkman (must be at end of file)
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
