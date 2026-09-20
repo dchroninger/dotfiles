@@ -3,8 +3,6 @@ tap "facebook/fb", trusted: { formulae: ["idb-companion"] }
 tap "supabase/tap"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
-# Manage your dotfiles across multiple diverse machines, securely
-brew "chezmoi"
 # Powerful, clean, object-oriented scripting language
 brew "ruby", link: false
 # Dependency manager for Cocoa projects
@@ -53,8 +51,6 @@ brew "pnpm"
 brew "poppler"
 # Object-relational database system
 brew "postgresql@17", link: true
-# Theme for zsh
-brew "powerlevel10k"
 # Command-line shell and scripting language
 brew "powershell", link: false
 # Interpreted, interactive, object-oriented programming language
@@ -65,6 +61,8 @@ brew "ripgrep"
 brew "rust"
 # Daemon to provide vmnet.framework support for rootless QEMU
 brew "socket_vmnet"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Terminal multiplexer

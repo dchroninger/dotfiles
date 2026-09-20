@@ -10,14 +10,15 @@ xcode-select --install
 git clone git@github.com:dchroninger/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 brew bundle            # installs everything in Brewfile
-stow zsh shell tmux ghostty karabiner gh nvim scripts
+stow zsh shell starship tmux ghostty karabiner gh nvim scripts
 ```
 
 ## Packages
 
 | pkg         | target                                  |
 | ----------- | --------------------------------------- |
-| `zsh`       | `~/.zshrc`, `~/.p10k.zsh`, `~/.zsh/`    |
+| `zsh`       | `~/.zshrc`, `~/.zsh/` (syntax theme)    |
+| `starship`  | `~/.config/starship.toml`               |
 | `shell`     | `~/.config/shell/` (env/aliases/funcs)  |
 | `tmux`      | `~/.tmux.conf` (plugins via tpm)        |
 | `ghostty`   | `~/.config/ghostty/`                    |

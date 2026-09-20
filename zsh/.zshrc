@@ -3,11 +3,6 @@ for f in ~/.config/shell/env.sh ~/.config/shell/aliases.sh ~/.config/shell/funct
     [ -f "$f" ] && . "$f"
 done
 
-# Powerlevel10k instant prompt (must stay near top)
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # --- macOS / Homebrew PATH ---
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
@@ -36,17 +31,23 @@ bindkey '^[[B' history-search-forward
 bindkey '^[[1;5C' forward-word    # ctrl-right
 bindkey '^[[1;5D' backward-word   # ctrl-left
 
-# --- prompt + plugins (Homebrew) ---
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+# --- plugins (Homebrew) ---
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+[[ -f ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh   # must be last plugin
 
 # --- tools ---
 command -v gshuf >/dev/null && alias shuf='gshuf'
 command -v fzf >/dev/null && source <(fzf --zsh)
+# fzf catppuccin mocha
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a --multi"
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# --- prompt ---
+eval "$(starship init zsh)"
 
 # sdkman (must be at end of file)
 export SDKMAN_DIR="$HOME/.sdkman"
